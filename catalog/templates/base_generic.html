@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  {% block title %}<title>Local Library</title>{% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/812392499f.js" crossorigin="anonymous" defer></script>
+  <!-- Добавление дополнительного статического CSS файла -->
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+</head>
+
+<body>
+    {% block header %}
+    <header class="header">
+      <div class="__container">
+        <div class="header-body">
+          <div class="header__logo logo">Онлайн <br> библиотека</div>
+          <ul class="header__menu">
+            <li><a href="{% url 'index' %}">Главная</a></li>
+            <li><a href="{% url 'books' %}">Все книги</a></li>
+            <li><a href="">Все авторы</a></li>
+            <li><a href=""><i class="fa-solid fa-arrow-right-to-bracket" style="color: #ffffff;"></i></i> Войти</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    </header> 
+    {% endblock %}
+
+
+      <section class="content __container">
+      {% block content %}{% endblock %}
+      </section>
+
+
+
+</body>
+</html>
