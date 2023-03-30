@@ -22,5 +22,5 @@ from django.views.generic import RedirectView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', RedirectView.as_view(url='/catalog/', permanent=True)), #RedirectView  принимает первым параметром новый относительный URL на который следует перенаправлять (/catalog/) когда указанный в функции url() адрес соотносится с адресом запроса (корневой URL, в данном случае).
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + [path('catalog/', include('catalog.urls'))]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [path('catalog/', include('catalog.urls'))]  
 

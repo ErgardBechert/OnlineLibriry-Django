@@ -1,18 +1,16 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-    <h1>Book List</h1>
-
     {% if book_list %}
-    <ul>
-
-      {% for book in book_list %}
-      <li>
-        <a href="{{ book.get_absolute_url }}">{{ book.title }}</a> ({{book.author}})
-      </li>
-      {% endfor %}
-
-    </ul>
+      <div class="book-list">
+        {% for book in book_list %}
+        <div class="book__card">
+            <div class="book__image"><a href="{{ book.get_absolute_url }}"><img src="{{ book.image.url }}" alt="book_image"></a></div>
+            <p class="book__title">{{ book.title }}</p>
+            <p class="book__author">{{book.author}}</p>
+        </div>
+        {% endfor %}
+      </div>
     {% else %}
       <p>В библиотеке нет книг</p>
     {% endif %}

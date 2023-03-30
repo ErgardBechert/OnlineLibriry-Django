@@ -1,16 +1,28 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-  <h1>Title: {{ book.title }}</h1>
+<div class="book-detail">
+  <div class="book-detail__img book__image">
+    <img src="{{ book.image.url }}" alt="";>
+  </div>
+  <div class="book-detail__body">
+    <div class="book-detail__title title">
+      {{ book.title }}
+    </div>
+      <ul class="book-detail__info">
+        <li class="book-detail__author"><span class="subtitle">Автор:</span><a href="">{{ book.author }}</a></li>
+        <li><span class="subtitle">Описание:</span> <p class="book-detail__description">{{ book.summary }}</p></li>
+        <li><span class="subtitle">ISBN:</span>{{ book.isbn }}</li>
+        <li><span class="subtitle">Язык:</span>{{ book.language }}</li>
+        <li><span class="subtitle">Жанр:</span>{% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
+      </ul>
+    </div>
+  </div>
+  
+  
 
-  <p><strong>Author:</strong> <a href="">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
-  <p><strong>Summary:</strong> {{ book.summary }}</p>
-  <p><strong>ISBN:</strong> {{ book.isbn }}</p>
-  <p><strong>Language:</strong> {{ book.language }}</p>
-  <p><strong>Genre:</strong> {% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
-
-  <div style="margin-left:20px;margin-top:20px">
-    <h4>Copies</h4>
+  <!-- <div style="margin-left:20px;margin-top:20px">
+    <h4>Копии</h4>
 
     {% for copy in book.bookinstance_set.all %} /*Данный метод является "автомагически"-сконструированным Django для того, чтобы вернуть множество записей BookInstance, связанных с данной книгой Book.
                                                 bookinstance, за которым следует _set (то есть функция, созданная для Book будет иметь вид bookinstance_set()).
@@ -21,5 +33,5 @@
     <p><strong>Imprint:</strong> {{copy.imprint}}</p>
     <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
     {% endfor %}
-  </div>
+  </div> -->
 {% endblock %}

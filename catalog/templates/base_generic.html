@@ -18,22 +18,39 @@
     <header class="header">
       <div class="__container">
         <div class="header-body">
-          <div class="header__logo logo">Онлайн <br> библиотека</div>
+          <div class="header__logo logo">Book<span>Hive</span></div>
           <ul class="header__menu">
             <li><a href="{% url 'index' %}">Главная</a></li>
             <li><a href="{% url 'books' %}">Все книги</a></li>
-            <li><a href="">Все авторы</a></li>
-            <li><a href=""><i class="fa-solid fa-arrow-right-to-bracket" style="color: #ffffff;"></i></i> Войти</a></li>
+            <li><a href="{% url 'authors' %}">Все авторы</a></li>
+            <li class="header__login"><a href=""><i class="fa-solid fa-arrow-right-to-bracket" style="color: #fad55e;"></i></i> Войти</a></li>
           </ul>
         </div>
       </div>
-      
     </header> 
     {% endblock %}
 
 
       <section class="content __container">
       {% block content %}{% endblock %}
+
+        {% block pagination %}
+          {% if is_paginated %}
+              <div class="pagination">
+                  <span class="page-links">
+                      {% if page_obj.has_previous %}
+                          <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                      {% endif %}
+                      <span class="page-current">
+                          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                      </span>
+                      {% if page_obj.has_next %}
+                          <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                      {% endif %}
+                  </span>
+              </div>
+          {% endif %}
+        {% endblock %}
       </section>
 
 
