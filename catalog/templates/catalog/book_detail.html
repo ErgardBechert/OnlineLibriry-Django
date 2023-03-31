@@ -1,20 +1,19 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<div class="book-detail">
-  <div class="book-detail__img book__image">
+<div class="block-detail">
+  <div class="block-detail__img book__image">
     <img src="{{ book.image.url }}" alt="";>
   </div>
-  <div class="book-detail__body">
-    <div class="book-detail__title title">
+  <div class="block-detail__body">
+    <div class="block-detail__title title">
       {{ book.title }}
     </div>
-      <ul class="book-detail__info">
-        <li class="book-detail__author"><span class="subtitle">Автор:</span><a href="">{{ book.author }}</a></li>
+      <ul class="block-detail__info">
+        <li class="book-detail__author"><span class="subtitle">Автор:</span><a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a></li>
         <li><span class="subtitle">Описание:</span> <p class="book-detail__description">{{ book.summary }}</p></li>
-        <li><span class="subtitle">ISBN:</span>{{ book.isbn }}</li>
-        <li><span class="subtitle">Язык:</span>{{ book.language }}</li>
         <li><span class="subtitle">Жанр:</span>{% for genre in book.genre.all %} {{ genre }}{% if not forloop.last %}, {% endif %}{% endfor %}</li>
+        <li><span class="subtitle">ISBN:</span>{{ book.isbn }}</li>
       </ul>
     </div>
   </div>

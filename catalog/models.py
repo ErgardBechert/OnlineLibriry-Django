@@ -18,7 +18,7 @@ class Book(models.Model):
     """
     Model representing a book (but not a specific copy of a book).
     """
-    image = models.ImageField(null=True, blank=True,default='default.jpg', upload_to='Book')
+    image = models.ImageField(null=True, blank=True,default='default.jpg', upload_to='Books')
     title = models.CharField(max_length=200)
     author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
     # Foreign Key used because book can only have one author, but authors can have multiple books
@@ -81,10 +81,12 @@ class Author(models.Model):
     """
     Model representing an author.
     """
+    image = models.ImageField(null=True, blank=True,default='default.jpg', upload_to='Authors')
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     date_of_birth = models.DateField(null=True, blank=True)
     date_of_death = models.DateField('Died', null=True, blank=True)
+    about_the_author = models.TextField(max_length=1000)
 
     def get_absolute_url(self):
         """

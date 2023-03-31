@@ -1,9 +1,9 @@
 {% extends "base_generic.html" %}
 {% block content %}
     {% if author_list %}
-      <ul class="authoe-list">
+      <ul class="author-list">
         {% for author in author_list %}
-        <li>{{ author.first_name }}, {{ author.last_name }}</li>
+        <li>{{ author.last_name }}, {{ author.first_name }}</li>
         {% endfor %}
     </ul>
     {% else %}

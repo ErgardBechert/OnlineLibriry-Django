@@ -9,7 +9,7 @@ class BookInline(admin.TabularInline):
 
 class AuthorAdmin(admin.ModelAdmin): # ModelAdmin (он описывает расположение элементов интерфейса, где Model - наименование модели) 
     list_display = ('last_name', 'first_name', 'date_of_birth', 'date_of_death')  #list_display (для добавления дополнительных полей).
-    fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death')] # Поля отображаются по вертикали по умолчанию, но будут отображаться горизонтально, если вы дополнительно группируете их в кортеже 
+    fields = ['image','first_name', 'last_name', ('date_of_birth', 'date_of_death'), 'about_the_author'] # Поля отображаются по вертикали по умолчанию, но будут отображаться горизонтально, если вы дополнительно группируете их в кортеже 
     
     inlines = [BookInline]
 # Register the admin class with the associated model

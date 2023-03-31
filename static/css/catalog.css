@@ -32,42 +32,47 @@
 .book__author{
     color: #7070bc;
 }
-/*book-detail*/
-.book-detail{
-    display: flex;
-    gap: 25px;
-}
 
-.book-detail__body{
-    width: 70%;
-}
-
-.book-detail__img{
-    width: 150px !important;
-    height: 280px;
-}
-
-.book-detail__info{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin: 15px 0 0 0 !important;
+.book-detail__author a{
+    color: #fad55e;
 }
 
 .book-detail__description{
     word-break: break-all;
     margin: 0 0 0 20px;
 }
+/*author*/
+.about-the-author{
+    display: block !important;
+}
+/*block-detail*/
+.block-detail{
+    display: flex;
+    gap: 25px;
+}
 
-.book-detail__info li{
+.block-detail__body{
+    width: 70%;
+}
+
+.block-detail__img{
+    width: 180px !important;
+    height: 280px;
+}
+
+.block-detail__info{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: 15px 0 0 0 !important;
+}
+
+.block-detail__info li{
    display: flex;
+   align-items: center;
 }
 
-.book-detail__author a{
-    color: #fad55e;
-}
-
-.book-detail__info span{
+.block-detail__info span{
     display: block;
     width: 106px !important;
 }
