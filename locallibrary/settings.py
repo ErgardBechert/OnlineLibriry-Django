@@ -32,8 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
+    'django.contrib.auth',# Фреймворк аутентификации и моделей по умолчанию.
+    'django.contrib.contenttypes', # Django контент-типовая система (даёт разрешения, связанные с моделями).
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -42,10 +42,10 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware', # Управление сессиями между запросами
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',# Связывает пользователей, использующих сессии, запросами.
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -55,7 +55,7 @@ ROOT_URLCONF = 'locallibrary.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,6 +119,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/img/'
 
+LOGIN_REDIRECT_URL = '/' #после авторизации переопределяет на галвнцю страницу,а не в профиль как по умолчанию
+
 STATICFILES_DIRS = [
 
     os.path.join(BASE_DIR, 'static')
@@ -132,3 +134,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #Это регистрирует любые письма, отправленные на консоль 

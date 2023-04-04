@@ -1,21 +1,109 @@
 {% extends "base_generic.html" %}
-{% block title %}<title>Home page</title>{% endblock %}
+{% block title %}<title>Главная страница</title>{% endblock %}
+{% load static %}
 {% block content %}
-<h1>Local Library Home</h1>
+<section class="main">
+  <div class="__container">
+    <div class="main__body">
+        <div class="main__title title">
+          BookHive — берите на прокат <span>книги</span> Ваших любимых авторов
+        </div>
+        <div class="main__img">
+            <img src="{% static 'img/main/book.svg' %}" alt="">
+        </div>
+    </div>
+</section>
 
-  <p>Welcome to <em>LocalLibrary</em>, a very basic Django website developed as a tutorial example on the Mozilla Developer Network.</p>
+<section class="dignity __container">
+    <div class="dignity-item">
+      <div class="dignity-item__image">
+        <i class="fa-solid fa-book"></i>
+      </div>
+      <div class="dignity-item__title">
+         {{ num_books }} книги
+      </div>
+    </div>
+    <div class="dignity-item">
+      <div class="dignity-item__image">
+        <i class="fa-solid fa-feather-pointed"></i>
+      </div>
+      <div class="dignity-item__title">
+        Более {{ num_genres }} <br> жанров
+      </div>
+    </div>
+    <div class="dignity-item">
+      <div class="dignity-item__image">
+        <i class="fa-solid fa-user-pen"></i>
+      </div>
+      <div class="dignity-item__title">
+        {{ num_authors }} автор
+      </div>
+    </div>
+    <div class="dignity-item">
+      <div class="dignity-item__image">
+        <i class="fa-solid fa-wifi"></i>
+      </div>
+      <div class="dignity-item__title">
+         Онлайн <br> и офлайн
+      </div>
+    </div>
+    <div class="dignity-item">
+      <div class="dignity-item__image">
+        <i class="fa-solid fa-puzzle-piece"></i>
+      </div>
+      <div class="dignity-item__title">
+        Подборки <br>
+        И рекомендации
+      </div>
+    </div>
+</section>
 
-<h2>Dynamic content</h2>
+<section class="recommend">
+  <div class="recommend__body __container">
+      <div class="recommen__title title">
+        Рекомендованные <br>
+         <span>книги</span> 
+      </div>
+      <div class="recommend__books">
+        <div class="recommend-book">
+          <div class="recommend-book__img book__image">
+            <img src="{% static 'img/default.jpg' %}" alt="">
+          </div>
+          <div class="book__title">Название книги</div>
+          <div class="book__author">Имя автора</div>
+        </div>
+        <div class="recommend-book">
+          <div class="recommend-book__img book__image">
+            <img src="{% static 'img/default.jpg' %}" alt="">
+          </div>
+          <div class="book__title">Название книги</div>
+          <div class="book__author">Имя автора</div>
+        </div>
+        <div class="recommend-book">
+          <div class="recommend-book__img book__image">
+            <img src="{% static 'img/default.jpg' %}" alt="">
+          </div>
+          <div class="book__title">Название книги</div>
+          <div class="book__author">Имя автора</div>
+        </div>
+        <div class="recommend-book">
+          <div class="recommend-book__img book__image">
+            <img src="{% static 'img/default.jpg' %}" alt="">
+          </div>
+          <div class="book__title">Название книги</div>
+          <div class="book__author">Имя автора</div>
+        </div>
+        <div class="recommend-book">
+          <div class="recommend-book__img book__image">
+            <img src="{% static 'img/default.jpg' %}" alt="">
+          </div>
+          <div class="book__title">Название книги</div>
+          <div class="book__author">Имя автора</div>
+        </div>
+      </div>
+  </div>
+</section>
 
-  <p>The library has the following record counts:</p>
-  <ul>
-    <li><strong>Books:</strong> {{ num_books }}</li>
-    <li><strong>Books word:</strong> {{ num_books_word }}</li>
-    <li><strong>Copies:</strong> {{ num_instances }}</li>
-    <li><strong>Copies available:</strong> {{ num_instances_available }}</li>
-    <li><strong>Authors:</strong> {{ num_authors }}</li>
-    <li><strong>Genres:</strong> {{ num_genres }}</li>
-   
-  </ul>
+
 
 {% endblock %}

@@ -18,9 +18,12 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import RedirectView
+from catalog import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/profile/', views.ProfileView.as_view(), name='profile'),
     path('', RedirectView.as_view(url='/catalog/', permanent=True)), #RedirectView  принимает первым параметром новый относительный URL на который следует перенаправлять (/catalog/) когда указанный в функции url() адрес соотносится с адресом запроса (корневой URL, в данном случае).
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + [path('catalog/', include('catalog.urls'))]  
 

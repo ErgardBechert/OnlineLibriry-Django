@@ -27,6 +27,7 @@
     font-size: 16px;
     font-weight: 600;
     line-height: 20px;
+    margin: 10px 0 0 0;
 }
 
 .book__author{
@@ -75,4 +76,78 @@
 .block-detail__info span{
     display: block;
     width: 106px !important;
+}
+
+/*page-main*/
+/*main*/
+.main{
+    width: 100%;
+    background: linear-gradient(177.06deg, #FAD55E -24.15%, rgba(250, 213, 94, 0) 107.17%);
+    padding: 30px 0;
+}
+
+.main__body{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.main__title{
+    width: 45%;
+}
+
+.main__title span{
+    color: #605dff;
+}
+/*dignity*/
+.dignity{
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    padding: 50px 0;
+}
+
+.dignity-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.dignity-item__image i{
+    font-size: 55px;
+    color: #FAD55E;
+}
+
+.dignity-item__title{
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+}
+/*recommend*/
+.recommend{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(177.06deg, #605DFF -24.15%, rgba(96, 93, 255, 0) 107.17%);
+    padding: 50px 0;
+}
+
+.recommen__title{
+    text-align: center;
+}
+
+.recommen__title span{
+    color: #FAD55E;
+}
+
+.recommend__books{
+    display: flex;
+    gap: 30px;
+    margin: 30px 0 0 0;
+}
+
+.recommend-book__img{
+    width: 200px !important;
+    height: 300px;
 }

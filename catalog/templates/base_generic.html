@@ -23,7 +23,13 @@
             <li><a href="{% url 'index' %}">Главная</a></li>
             <li><a href="{% url 'books' %}">Все книги</a></li>
             <li><a href="{% url 'authors' %}">Все авторы</a></li>
-            <li class="header__login"><a href=""><i class="fa-solid fa-arrow-right-to-bracket" style="color: #fad55e;"></i></i> Войти</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'profile' %}"><i class="fa-regular fa-user" style="color: #fad55e;"></i> {{ user.get_username }}</a></li>
+                <li class="header__login"><a href="{% url 'logout'%}?next={{request.path}}"><i class="fa-solid fa-arrow-right-to-bracket" style="color: #fad55e;"></i></i> Выйти</a></li>
+            {% else %}
+                <li class="header__login"><a href="{% url 'login'%}?next={{request.path}}"><i class="fa-solid fa-arrow-right-to-bracket" style="color: #fad55e;"></i></i> Войти</a></li>
+            {% endif %}
+            
           </ul>
         </div>
       </div>
@@ -31,7 +37,7 @@
     {% endblock %}
 
 
-      <section class="content __container">
+      <section class="page">
       {% block content %}{% endblock %}
 
         {% block pagination %}
@@ -53,6 +59,29 @@
         {% endblock %}
       </section>
 
+      <footer class="footer">
+        <div class="__container">
+          <div class="footer__body">
+          <div class="footer__logo logo">
+            Book<span>Hive</span>
+          </div>
+          <div class="footer-info">
+            <ul class="footer-list fast-link">
+              <li>Быстрые сылки</li>
+              <li><a href=""><i class="fa-solid fa-caret-right" style="color: #fad55e;"></i>Главная</a></li>
+              <li><a href=""><i class="fa-solid fa-caret-right" style="color: #fad55e;"></i>Все книги</a></li>
+              <li><a href=""><i class="fa-solid fa-caret-right" style="color: #fad55e;"></i>Все авторы</a></li>
+            </ul>
+            <ul class="footer-list contacts">
+              <li>Контакты</li>
+              <li>Email: bookhive@mail.ru</li>
+              <li>Телефон: 7 432 234 23 43</li>
+            </ul>
+          </div>
+            
+          </div>
+        </div>
+      </footer>
 
 
 </body>
