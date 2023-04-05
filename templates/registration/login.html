@@ -1,40 +1,36 @@
-{% extends "base_generic.html" %}
+{% extends "base_generic_register.html" %}
 
 {% block content %}
 
-{% if form.errors %}
-  <p>Your username and password didn't match. Please try again.</p>
-{% endif %}
-
-{% if next %}
-  {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-  {% else %}
-    <p>Please login to see this page.</p>
+<form class="login-form form-popup" method="post" action="{% url 'login' %}">
+  {% csrf_token %} 
+  {% if form.errors %}
+    <p>Ваше имя пользователя и пароль не совпадают. Пожалуйста, попробуйте еще раз.</p>
   {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>У вашего аккаунта нет доступа к этой странице.Войдите с учетной записи, которая имеет доступ</p>
+    {% else %}
+      <!-- <p>Please login to see this page.</p> -->
+    {% endif %}
 {% endif %}
 
-<form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
+  <div class="form-popup__logo logo">
+      Book<span>Hide</span>
+  </div>
+  <h2>Войдите в аккаунт</h2>
+  {{ form.username }}
+  {{ form.password }}
+  <input type="submit" value="login" />
+  <input type="hidden" name="next" value="{{ next }}" />
+  <!-- <input name= "username" type="text" placeholder="Ваша почту">
+  <input name= "password" type="password" placeholder="Ваш пароль"> -->
 
-<tr>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
-</tr>
-
-<tr>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
+  <!-- <button>Войти</button> -->
+  {# Assumes you setup the password_reset view in your URLconf #}
+  <a href="{% url 'password_reset' %}">Восстановить пароль</a>
+  <a href="reg.html">Зарегистрироваться</a>
 </form>
-
-{# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}">Lost password?</a></p>
 
 {% endblock %}
