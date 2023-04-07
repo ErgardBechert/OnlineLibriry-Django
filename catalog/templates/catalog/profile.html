@@ -1,16 +1,43 @@
 {% extends "base_generic.html" %}
-
+{% load static %}
 {% block content %}
-    <h1>Забронированные книги</h1>
-    {% if bookinstance_list %}
-    <ul>
+    <div class="account __container">
+      <div class="profile">
+          <h2>Профиль</h1>
+            <div class="profile-header">
+              <div class="profile__image">
+                <img src="{% static 'img/default.jpg' %}" alt="">
+              </div>
+              <div class="profile-header__info">
+                <p class="profile__status">пользователь</p>
+                <p class="profile__name">{{ user.get_username }}</p>
+              </div>
+            </div>
+            <ul class="profile__info">
+                <li>Дата рождения: <span class="date-of-birth"></span></li>
+                <li>Email: <span class="email">1312321@gmail.com</span></li>
+            </ul>
+            <div class="profile__dictation">
+              <a class=" btn" href="#">Редактировать</a>
+            </div>
+        
+      </div>
 
-      {% for bookinst in bookinstance_list %}
-      <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
-        <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }})
-      </li>
-      {% endfor %}
-    </ul>
+      <div class="">
+        <h2>Забронированные книги</h1>
+          {% if bookinstance_list %}
+          <ul>
+      
+            {% for bookinst in bookinstance_list %}
+            <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
+              <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }})
+            </li>
+            {% endfor %}
+          </ul>
+      </div>
+      
+    </div>
+    
 
     {% else %}
       <p>There are no books borrowed.</p>

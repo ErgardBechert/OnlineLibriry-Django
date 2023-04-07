@@ -151,3 +151,53 @@
     width: 200px !important;
     height: 300px;
 }
+
+/*profile*/
+.account{
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.profile-header{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.profile__image{
+    width: 64px;
+    height: 64px;
+    object-fit: cover;
+}
+
+.profile__image img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.profile__status{
+    color: #605DFF;
+}
+
+.profile__info{
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.profile__info li{
+    display: flex;
+    gap: 10px;
+}
+
+.profile__dictation{
+    margin: 15px 0 0 0;
+}

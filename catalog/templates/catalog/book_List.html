@@ -2,12 +2,12 @@
 
 {% block content %}
     {% if book_list %}
-      <div class="book-list">
+      <div class="book-list __container">
         {% for book in book_list %}
         <div class="book__card">
             <div class="book__image"><a href="{{ book.get_absolute_url }}"><img src="{{ book.image.url }}" alt="book_image"></a></div>
             <p class="book__title">{{ book.title }}</p>
-            <p class="book__author">{{book.author}}</p>
+            <p class="book__author">{{ book.author }}</p>
         </div>
         {% endfor %}
       </div>
