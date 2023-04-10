@@ -9,7 +9,13 @@
                 <img src="{% static 'img/default.jpg' %}" alt="">
               </div>
               <div class="profile-header__info">
-                <p class="profile__status">пользователь</p>
+
+                {% if is_librarian  %}
+                  <p class="profile__status" style="color: #FAD55E;">библиотекарь</p>
+                {% else %}
+                  <p class="profile__status">пользователь</p>
+                {% endif %}
+                
                 <p class="profile__name">{{ user.get_username }}</p>
               </div>
             </div>
@@ -29,9 +35,14 @@
           <ul>
       
             {% for bookinst in bookinstance_list %}
-            <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
-              <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }})
-            </li>
+            {% if is_librarian  %}
+                <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
+                  <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }}) - {{ bookinst.borrower }}
+                {% else %}
+                <li class="{% if bookinst.is_overdue %}text-danger{% endif %}">
+                  <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }})
+                </li>
+                {% endif %}
             {% endfor %}
           </ul>
       </div>

@@ -64,7 +64,11 @@ class ProfileView(LoginRequiredMixin, generic.ListView):
         # Если пользователь не принадлежит к группе 'Библиотекари', то
         # отображаем только зарезервированные книги текущего пользователя
             return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
-
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_librarian'] = self.request.user.groups.filter(name='Библиотекари').exists()
+        return context
 
 from django.contrib.auth.decorators import permission_required
 
