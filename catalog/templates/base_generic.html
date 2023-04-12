@@ -18,7 +18,7 @@
     <header class="header">
       <div class="__container">
         <div class="header-body">
-          <div class="header__logo logo">Book<span>Hive</span></div>
+          <a href="{% url 'index' %}" class="header__logo logo">Book<span>Hive</span></a>
           <ul class="header__menu">
             <li><a href="{% url 'index' %}">Главная</a></li>
             <li><a href="{% url 'books' %}">Все книги</a></li>
@@ -62,15 +62,13 @@
       <footer class="footer">
         <div class="__container">
           <div class="footer__body">
-          <div class="footer__logo logo">
-            Book<span>Hive</span>
-          </div>
+            <a href="{% url 'index' %}" class="footer__logo logo">Book<span>Hive</span></a>
           <div class="footer-info">
             <ul class="footer-list fast-link">
               <li>Быстрые сылки</li>
-              <li><a href=""><i class="fa-solid fa-caret-right" style="color: #fad55e;"></i>Главная</a></li>
-              <li><a href=""><i class="fa-solid fa-caret-right" style="color: #fad55e;"></i>Все книги</a></li>
-              <li><a href=""><i class="fa-solid fa-caret-right" style="color: #fad55e;"></i>Все авторы</a></li>
+              <li><a href="{% url 'index' %}"><i class="fa-solid fa-caret-right" style="color: #fad55e;"></i>Главная</a></li>
+              <li><a href="{% url 'books' %}"><i class="fa-solid fa-caret-right" style="color: #fad55e;"></i>Все книги</a></li>
+              <li><a href="{% url 'authors' %}"><i class="fa-solid fa-caret-right" style="color: #fad55e;"></i>Все авторы</a></li>
             </ul>
             <ul class="footer-list contacts">
               <li>Контакты</li>
