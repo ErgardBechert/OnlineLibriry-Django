@@ -46,6 +46,11 @@ class AuthorListView(generic.ListView):
 class AuthorDetailView(generic.DetailView):
     model = Author
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_librarian'] = self.request.user.groups.filter(name='Библиотекари').exists()
+        return context
+
 class ProfileView(LoginRequiredMixin, generic.ListView):
     """
     Generic class-based view listing books on loan to current user.

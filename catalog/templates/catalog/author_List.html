@@ -1,11 +1,13 @@
 {% extends "base_generic.html" %}
 {% block content %}
     {% if author_list %}
+    <div class="__container">
       <ul class="author-list">
         {% for author in author_list %}
-        <li>{{ author.last_name }}, {{ author.first_name }}</li>
+        <li> <a href="{% url 'author-detail' author.pk %}">{{ author.last_name }}, {{ author.first_name }}</a></li>
         {% endfor %}
-    </ul>
+      </ul>
+    </div> 
     {% else %}
       <p>В библиотеке нет авторов</p>
     {% endif %}

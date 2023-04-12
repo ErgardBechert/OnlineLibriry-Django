@@ -1,17 +1,27 @@
 {% extends "base_generic.html" %}
 
 {% block content %}
-<div class="block-detail __container">
-  <div class="block-detail__img book__image">
-    <img src="{{ author.image.url }}" alt="";>
-  </div>
-  <div class="block-detail__body">
-    <div class="block-detail__title title">
-      {{ author.last_name }}, {{ author.first_name }}
+<div class="__container">
+  <div class="block-detail">
+    <div class="block-detail__img book__image">
+      <img src="{{ author.image.url }}" alt="";>
     </div>
-      <ul class="block-detail__info">
-        <li><span class="subtitle">Годы жизни:</span> <p>{{ author.date_of_birth }} - {{ author.date_of_death }}</p> </li>
-        <li class="about-the-author"><span class="subtitle">Биография:</span> <p>{{ author.about_the_author }}</p></li>
+    <div class="block-detail__body">
+      <div class="block-detail__title title">
+        {{ author.last_name }}, {{ author.first_name }}
+      </div>
+        <ul class="block-detail__info">
+          <li><span class="subtitle">Годы жизни:</span> <p>{{ author.date_of_birth }} - {{ author.date_of_death }}</p> </li>
+          <li class="about-the-author"><span class="subtitle">Биография:</span> <p>{{ author.about_the_author }}</p></li>
+      </div>
     </div>
-  </div>
+    {% if is_librarian  %}
+      <div class="menu-controll">
+          <a href="{% url 'author_update' author.pk %}" class="btn editing_btn">Редактировать</a>
+          <a href="{% url 'author_delete' author.pk %}" class="btn delete_btn">Удалить</a> 
+      </div>
+    {% endif %}
+</div>
+
+
 {% endblock %}

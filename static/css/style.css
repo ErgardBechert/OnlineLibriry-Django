@@ -112,12 +112,29 @@ body {
 .btn{
   height: 38px;
   color: #fff !important;
-  background: #605dff !important;
   border-radius: 20px !important;
   border: none;
   font-weight: 600;
   cursor: pointer;
   padding: 8px 16px;
+}
+
+.editing_btn{
+  background: #FAD55E;
+}
+
+.delete_btn{
+  background: #FF5D5D;
+}
+
+.default_btn{
+  background: #605dff !important;
+}
+
+.menu-controll{
+  display: flex;
+  gap: 15px;
+  margin: 50px 0 0 0;
 }
 
 /*header*/
