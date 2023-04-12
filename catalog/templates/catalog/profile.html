@@ -29,6 +29,16 @@
         
       </div>
 
+      {% if is_librarian  %}
+        <div class="">
+          <h2>Спец. Возможности</h1>
+            <ul>
+              <li><a href="{% url 'author_create' %}">Создать автора</a></li>
+              <li><a href=""></a></li>
+            </ul>
+        </div>
+      {% endif %}
+
       <div class="">
         <h2>Забронированные книги</h1>
           {% if bookinstance_list %}
