@@ -112,3 +112,26 @@ def renew_book_librarian(request, pk):
 
     return render(request, 'catalog/book_renew_librarian.html', {'form': form, 'bookinst':book_inst})
 
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from .models import Author
+
+from django.contrib.auth.mixins import PermissionRequiredMixin
+
+class AuthorCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    model = Author
+    fields = '__all__'
+    initial = {'date_of_death': 'xx/xx/xxxx'}
+    permission_required = 'catalog.can_change_author'
+    raise_exception = True
+    login_url = reverse_lazy('login')
+
+class AuthorUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    model = Author
+    fields = ['image', 'first_name','last_name','date_of_birth','date_of_death', 'about_the_author']
+    permission_required = 'catalog.can_change_author'
+
+class AuthorDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    model = Author
+    success_url = reverse_lazy('authors')
+    permission_required = 'catalog.can_change_author'

@@ -113,3 +113,6 @@ class Author(models.Model):
     
     class Meta:
         ordering = ['last_name']
+        permissions = (
+                ("can_change_author", "change author"),
+        )
