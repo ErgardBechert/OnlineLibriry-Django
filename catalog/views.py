@@ -28,7 +28,7 @@ from django.views import generic
 class BookListView(generic.ListView):
     model = Book
 
-    paginate_by = 10
+    paginate_by = 7
 
     def get_context_data(self, **kwargs):
         # В первую очередь получаем базовую реализацию контекста
@@ -62,7 +62,6 @@ class ProfileView(LoginRequiredMixin, generic.ListView):
     """
     model = BookInstance
     template_name ='catalog/profile.html'
-    paginate_by = 10
 
 
     def get_queryset(self):

@@ -2,7 +2,7 @@
 {% if perms.catalog.can_mark_returned %}
     {% block content %}
 <div class="__container">
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table>
         {{ form.as_table }}

@@ -42,18 +42,18 @@
 
         {% block pagination %}
           {% if is_paginated %}
-              <div class="pagination">
-                  <span class="page-links">
+              <div class="pagination __container">
+                  <div class="page-links">
                       {% if page_obj.has_previous %}
-                          <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">previous</a>
+                          <a class="" href="{{ request.path }}?page={{ page_obj.previous_page_number }}"><i class="fa-solid fa-angle-left"></i></a>
                       {% endif %}
-                      <span class="page-current">
-                          Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                      </span>
+                      <div class="pagination__page">
+                          <span class="page-current page-num">{{ page_obj.number }}</span> <span class="page-max page-num">{{ page_obj.paginator.num_pages }}</span>
+                      </div>
                       {% if page_obj.has_next %}
-                          <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">next</a>
+                          <a class="" href="{{ request.path }}?page={{ page_obj.next_page_number }}"><i class="fa-solid fa-angle-right"></i></a>
                       {% endif %}
-                  </span>
+                  </div>
               </div>
           {% endif %}
         {% endblock %}
