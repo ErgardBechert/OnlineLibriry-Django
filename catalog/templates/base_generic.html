@@ -48,7 +48,7 @@
                           <a class="" href="{{ request.path }}?page={{ page_obj.previous_page_number }}"><i class="fa-solid fa-angle-left"></i></a>
                       {% endif %}
                       <div class="pagination__page">
-                          <span class="page-current page-num">{{ page_obj.number }}</span> <span class="page-max page-num">{{ page_obj.paginator.num_pages }}</span>
+                          <span class="page-current page-num">{{ page_obj.number }}</span> ... <span class="page-max page-num">{{ page_obj.paginator.num_pages }}</span>
                       </div>
                       {% if page_obj.has_next %}
                           <a class="" href="{{ request.path }}?page={{ page_obj.next_page_number }}"><i class="fa-solid fa-angle-right"></i></a>

@@ -157,3 +157,17 @@ class BookDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Book
     success_url = reverse_lazy('books')
     permission_required = 'catalog.can_change_author'
+
+class GenreCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    model = Genre
+    fields = '__all__'
+    permission_required = 'catalog.can_change_author'
+
+class GenreListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):
+    model = Genre
+    permission_required = 'catalog.can_change_author'
+
+class GenreDelete(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
+    model = Genre
+    success_url = reverse_lazy('genre_list')
+    permission_required = 'catalog.can_change_author'

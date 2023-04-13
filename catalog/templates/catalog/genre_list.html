@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="__container">
+    {% if genre_list %}
+    <div class="__container">
+      <ul class="author-list">
+        {% for genre in genre_list %}
+        <li>{{ genre }} <a href="{% url 'genre_delete' genre.pk %}"><i class="fa-solid fa-trash" style="color: #FF5D5D;"></i></a></li>
+        {% endfor %}
+      </ul>
+    </div> 
+    {% else %}
+      <p>Список жанров пуст</p>
+    {% endif %}
+</div>
+{% endblock %}
