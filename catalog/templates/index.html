@@ -1,6 +1,7 @@
 {% extends "base_generic.html" %}
 {% block title %}<title>Главная страница</title>{% endblock %}
 {% load static %}
+
 {% block content %}
 <section class="main">
   <div class="__container">
@@ -20,7 +21,7 @@
         <i class="fa-solid fa-book"></i>
       </div>
       <div class="dignity-item__title">
-         {{ num_books }} книги
+         {{ num_books }} {{ num_books|pluralize:"книги,книг" }} 
       </div>
     </div>
     <div class="dignity-item">
@@ -28,7 +29,7 @@
         <i class="fa-solid fa-feather-pointed"></i>
       </div>
       <div class="dignity-item__title">
-        Более {{ num_genres }} <br> жанров
+        Более {{ num_genres }} {{ num_genres|pluralize:"жанра,жанров" }} 
       </div>
     </div>
     <div class="dignity-item">
