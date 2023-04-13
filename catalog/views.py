@@ -40,6 +40,11 @@ class BookListView(generic.ListView):
 class BookDetailView(generic.DetailView):
     model = Book
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['is_librarian'] = self.request.user.groups.filter(name='Библиотекари').exists()
+        return context
+
 class AuthorListView(generic.ListView):
     model = Author
 
@@ -126,10 +131,8 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 class AuthorCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Author
     fields = '__all__'
-    initial = {'date_of_death': 'xx/xx/xxxx'}
+    initial = {'date_of_death': 'xx.xx.xxxx'}
     permission_required = 'catalog.can_change_author'
-    raise_exception = True
-    login_url = reverse_lazy('login')
 
 class AuthorUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Author
@@ -139,4 +142,19 @@ class AuthorUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
 class AuthorDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Author
     success_url = reverse_lazy('authors')
+    permission_required = 'catalog.can_change_author'
+
+class BookCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    model = Book
+    fields = '__all__'
+    permission_required = 'catalog.can_change_author'
+
+class BookUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    model = Book
+    fields = ['image','title','author','summary','isbn', 'genre']
+    permission_required = 'catalog.can_change_author'
+
+class BookDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    model = Book
+    success_url = reverse_lazy('books')
     permission_required = 'catalog.can_change_author'
