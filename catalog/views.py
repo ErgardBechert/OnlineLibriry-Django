@@ -169,6 +169,11 @@ class BookDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     success_url = reverse_lazy('books')
     permission_required = 'catalog.can_change_author'
 
+class BookInstanceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    model = BookInstance
+    fields = '__all__'
+    permission_required = 'catalog.can_change_author'
+
 class GenreCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Genre
     fields = '__all__'

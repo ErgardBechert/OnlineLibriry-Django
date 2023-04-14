@@ -78,6 +78,14 @@
     width: 106px !important;
 }
 
+.borrowed__btn{
+    display: inline-block;
+    border-radius: 8px;
+    border: 1.5px solid #605DFF;
+    padding: 5px;
+    font-weight: 600;
+    color: #605DFF;
+}
 /*page-main*/
 /*main*/
 .main{

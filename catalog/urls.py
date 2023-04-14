@@ -27,6 +27,10 @@ urlpatterns += [
 ]
 
 urlpatterns += [
+    re_path(r'^book/create_book_instance/$', views.BookInstanceCreate.as_view(), name='book_instance_create'),
+]
+
+urlpatterns += [
     re_path(r'^genres/$', views.GenreListView.as_view(), name='genre_list'),
     re_path(r'^genre/create/$', views.GenreCreate.as_view(), name='genre_create'),
     re_path(r'^genres/(?P<pk>\d+)/delete/$', views.BookDelete.as_view(), name='genre_delete'),

@@ -33,7 +33,7 @@
         {% if copy.status != 'a' %}<p><strong>Возврат книги:</strong> {{copy.due_back}}</p>{% endif %}
         <p><strong>Imprint:</strong> {{copy.imprint}}</p>
         <p class="text-muted"><strong>Id:</strong> {{copy.id}}</p>
-        <a class="dn default_btn{% if copy.status == 'a' %}btn{% endif %}" href="{% url 'borrow_book' copy.pk %}">Забронировать</a>
+        <a class="{% if copy.status == 'a' %}borrowed__btn{% else %}dn{% endif %}" href="{% url 'borrow_book' copy.pk %}">Забронировать</a>
       {% endfor %}
     </div>
 </div>
