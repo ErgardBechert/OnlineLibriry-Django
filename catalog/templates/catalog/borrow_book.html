@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div class="__container">
+    <h1>Забронировать книгу "{{ copy.book.title }}"</h1>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn default_btn">Забронировать книгу</button>
+  </form>
+</div>
+{% endblock %}

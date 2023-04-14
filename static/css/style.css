@@ -84,6 +84,10 @@ body {
   margin: 0 auto;
 }
 
+.dn{
+  display: none;
+}
+
 .logo{
   font-size: 40px;
   font-weight: 600;
@@ -110,6 +114,7 @@ body {
 }
 
 .btn{
+  display: inline-block !important;
   height: 38px;
   color: #fff !important;
   border-radius: 20px !important;

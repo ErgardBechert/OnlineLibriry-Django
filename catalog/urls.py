@@ -11,6 +11,7 @@ urlpatterns = [
     re_path(r'^authors/$', views.AuthorListView.as_view(), name='authors'),
     re_path(r'^author/(?P<pk>\d+)$', views.AuthorDetailView.as_view(), name='author-detail'),
     re_path(r'^book/(?P<pk>[-\w]+)/renew/$', views.renew_book_librarian, name='renew-book-librarian'),
+    re_path(r'^book/(?P<pk>[-\w]+)/borrow/$', views.borrow_book, name='borrow_book'),
 ] 
 
 urlpatterns += [

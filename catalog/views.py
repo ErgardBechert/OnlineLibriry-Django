@@ -121,6 +121,17 @@ def renew_book_librarian(request, pk):
 
     return render(request, 'catalog/book_renew_librarian.html', {'form': form, 'bookinst':book_inst})
 
+def borrow_book(request, pk):
+    copy = get_object_or_404(BookInstance,  pk=pk)
+
+    if request.method == 'POST':
+        copy.status = 'o'
+        copy.save()
+        return HttpResponseRedirect(reverse('book-detail', args=[copy.book.pk]))
+
+    return render(request, 'catalog/borrow_book.html', {'copy': copy})
+
+
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Author
