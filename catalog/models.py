@@ -80,6 +80,12 @@ class BookInstance(models.Model):
             return True
         return False
 
+    def get_absolute_url(self):
+        """
+        Returns the url to access a particular book instance.
+        """
+        return reverse('book_instance_create')
+
     def __str__(self):
         """
         String for representing the Model object

@@ -126,6 +126,7 @@ def borrow_book(request, pk):
 
     if request.method == 'POST':
         copy.status = 'o'
+        copy.borrower = request.user  # сохраняем пользователя
         copy.save()
         return HttpResponseRedirect(reverse('book-detail', args=[copy.book.pk]))
 
