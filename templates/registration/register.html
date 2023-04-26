@@ -1,0 +1,32 @@
+{% extends "base_generic_register.html" %}
+
+{% block content %}
+<form class="register-form form-popup" method="post" action="{% url 'register' %}">
+    {% csrf_token %} 
+    {% if form.errors %}
+      <p>Ваше имя пользователя и пароль не совпадают. Пожалуйста, попробуйте еще раз.</p>
+    {% endif %}
+  
+    {% if next %}
+      {% if user.is_authenticated %}
+        <p>У вашего аккаунта нет доступа к этой странице.Войдите с учетной записи, которая имеет доступ</p>
+      {% else %}
+        <!-- <p>Please login to see this page.</p> -->
+      {% endif %}
+  {% endif %}
+  
+    <div class="form-popup__logo logo">
+        Book<span>Hide</span>
+    </div>
+    <h2>Зарегистрироваться</h2>
+    {{ form.as_p }}
+    <input class="btn" type="submit" value="login" />
+    <input type="hidden" name="next" value="{{ next }}" />
+    <!-- <input name= "username" type="text" placeholder="Ваша почту">
+    <input name= "password" type="password" placeholder="Ваш пароль"> -->
+  
+    <!-- <button>Войти</button> -->
+    {# Assumes you setup the password_reset view in your URLconf #}
+    <a href="{% url 'login' %}">Войти</a>
+  </form>
+{% endblock %}

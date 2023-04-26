@@ -86,7 +86,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 import datetime
 
-from .forms import RenewBookForm
+from .forms import RenewBookForm, RegisterUserForm
 
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
@@ -187,3 +187,13 @@ class GenreDelete(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteVie
     model = Genre
     success_url = reverse_lazy('genre_list')
     permission_required = 'catalog.can_change_author'
+
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.forms import UserCreationForm
+
+class RegisterUser(CreateView):
+    form_class = RegisterUserForm
+    template_name = 'registration/register.html'
+    success_url = reverse_lazy('login')
+
+   

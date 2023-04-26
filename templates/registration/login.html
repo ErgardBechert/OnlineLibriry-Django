@@ -30,7 +30,7 @@
   <!-- <button>Войти</button> -->
   {# Assumes you setup the password_reset view in your URLconf #}
   <a href="{% url 'password_reset' %}">Восстановить пароль</a>
-  <a href="reg.html">Зарегистрироваться</a>
+  <a href="{% url 'register' %}">Зарегистрироваться</a>
 </form>
 
 {% endblock %}

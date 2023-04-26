@@ -1,6 +1,8 @@
 
 import datetime
 from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from .models import BookInstance
@@ -31,3 +33,18 @@ class RenewBookForm(forms.ModelForm):
         fields = ['due_back',]
         labels = { 'due_back': _('Renewal date'), }
         help_texts = { 'due_back': _('Enter a date between now and 4 weeks (default 3).'), }
+
+class RegisterUserForm(UserCreationForm):
+    username = forms.CharField(label='Логин', widget=forms.TextInput(attrs={'class': 'form-input'}))
+    password1 = forms.CharField(label='Пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    password1 = forms.CharField(label='Подтверждение пароля', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
+    class Melta:
+        model = User
+        fields = ('username', 'password1', 'password2')
+        widgets= {
+            'username': forms.TextInput(attrs={'class': 'form-input'}),
+            'password1': forms.PasswordInput(attrs={'class': 'form-input'}),
+            'password2': forms.PasswordInput(attrs={'class': 'form-input'}),
+
+        }
+            
