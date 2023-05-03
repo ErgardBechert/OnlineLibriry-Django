@@ -10,6 +10,12 @@ class Genre(models.Model):
     """
     name = models.CharField(max_length=200, help_text="Enter a book genre (e.g. Science Fiction, French Poetry etc.)")
 
+    def get_absolute_url(self):
+        """
+        Returns the url to access a particular book instance.
+        """
+        return reverse('genre_list')
+
     def __str__(self):
         """
         String for representing the Model object (in Admin site etc.)

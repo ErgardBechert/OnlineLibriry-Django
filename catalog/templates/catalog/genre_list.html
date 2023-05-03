@@ -6,7 +6,7 @@
     <div class="__container">
       <ul class="author-list">
         {% for genre in genre_list %}
-        <li>{{ genre }} <a href="{% url 'genre_delete' genre.pk %}"><i class="fa-solid fa-trash" style="color: #FF5D5D;"></i></a></li>
+        <li id="genre-{{ genre.pk }}">{{ genre }} <button class="btn-delete" data-id="{{ genre.pk }}"><i class="fa-solid fa-trash" style="color: #FF5D5D;"></i></button></li>
         {% endfor %}
       </ul>
     </div> 
@@ -14,4 +14,21 @@
       <p>Список жанров пуст</p>
     {% endif %}
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function() {
+    $('.btn-delete').click(function() {
+        var genreId = $(this).data('id');
+        $.ajax({
+            url: '{% url "delete_genre" %}',
+            method: 'POST',
+            data: { genre_id: genreId },
+            success: function(response) {
+                $('#genre-' + genreId).remove();
+            }
+        });
+    });
+});
+</script>
 {% endblock %}

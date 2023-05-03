@@ -33,6 +33,6 @@ urlpatterns += [
 urlpatterns += [
     re_path(r'^genres/$', views.GenreListView.as_view(), name='genre_list'),
     re_path(r'^genre/create/$', views.GenreCreate.as_view(), name='genre_create'),
-    re_path(r'^genres/(?P<pk>\d+)/delete/$', views.BookDelete.as_view(), name='genre_delete'),
+    re_path(r'^genre/delete/$', views.delete_genre, name='delete_genre'),
 ]
 

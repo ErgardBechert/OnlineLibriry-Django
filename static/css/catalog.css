@@ -209,3 +209,9 @@
 .profile__dictation{
     margin: 15px 0 0 0;
 }
+
+.btn-delete{
+    border: none !important;
+    background-color: #fff !important;
+    cursor: pointer;
+}

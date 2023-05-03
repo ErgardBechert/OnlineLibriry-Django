@@ -184,11 +184,19 @@ class GenreListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListVie
     model = Genre
     permission_required = 'catalog.can_change_author'
 
-class GenreDelete(LoginRequiredMixin, PermissionRequiredMixin, generic.DeleteView):
-    model = Genre
-    success_url = reverse_lazy('genre_list')
-    permission_required = 'catalog.can_change_author'
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt # чтобы обойти проверку CSRF-токена во время разработки и настроили обработчик POST-запроса на удаление жанра из бд
 
+@csrf_exempt
+def delete_genre(request):
+    if request.method == 'POST':
+        genre_id = request.POST.get('genre_id')
+        genre = Genre.objects.get(pk=genre_id)
+        genre.delete()
+        return JsonResponse({'success': True})
+    else:
+        return JsonResponse({'success': False})
+    
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import UserCreationForm
 
