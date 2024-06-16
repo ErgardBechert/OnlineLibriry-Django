@@ -11,7 +11,11 @@
         {{ author.last_name }}, {{ author.first_name }}
       </div>
         <ul class="block-detail__info">
-          <li><span class="subtitle">Годы жизни:</span> <p>{{ author.date_of_birth }} - {{ author.date_of_death }}</p> </li>
+          {% if author.date_of_death %}
+          <li><span class="subtitle">Годы жизни:</span> <p>{{ author.date_of_birth }} - {{ author.date_of_death }}</p></li>
+        {% else %}
+          <li><span class="subtitle">Годы жизни:</span> <p>{{ author.date_of_birth }} - По настоящее время</p></li>
+        {% endif %}
           <li class="about-the-author"><span class="subtitle">Биография:</span> <p>{{ author.about_the_author }}</p></li>
       </div>
     </div>

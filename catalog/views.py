@@ -2,11 +2,13 @@ from django.shortcuts import render
 from .models import Book, Author, BookInstance, Genre
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+
 def index(request):
     """
     Функция отображения для домашней страницы сайта.
     """
     # Генерация "количеств" некоторых главных объектов
+    books = Book.objects.all()[:5] 
     num_books=Book.objects.all().count()
     num_instances=BookInstance.objects.all().count()
     num_genres = Genre.objects.all().count()
@@ -20,7 +22,7 @@ def index(request):
     return render(
         request,
         'index.html',
-        context={'num_books_word': num_books_word,'num_genres': num_genres,'num_books':num_books,'num_instances':num_instances,'num_instances_available':num_instances_available,'num_authors':num_authors},
+        context={'book_list': books,'num_books_word': num_books_word,'num_genres': num_genres,'num_books':num_books,'num_instances':num_instances,'num_instances_available':num_instances_available,'num_authors':num_authors},
     )
 
 from django.views import generic
@@ -28,7 +30,7 @@ from django.views import generic
 class BookListView(generic.ListView):
     model = Book
 
-    paginate_by = 7
+    paginate_by = 14
 
     def get_context_data(self, **kwargs):
         # В первую очередь получаем базовую реализацию контекста
@@ -94,6 +96,13 @@ from django.urls import reverse
 import datetime
 
 from .forms import RenewBookForm
+from .forms import BookCreateForm
+from .forms import BookInstanceCreateForm
+from .forms import AuthorCreateForm
+from .forms import AuthorUpdateForm
+from .forms import GenreCreateForm
+from .models import Book
+from django.urls import reverse_lazy
 
 def renew_book_librarian(request, pk):
     book_inst = get_object_or_404(BookInstance, pk=pk)
@@ -141,13 +150,13 @@ from django.contrib.auth.mixins import PermissionRequiredMixin
 
 class AuthorCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Author
-    fields = '__all__'
+    form_class = AuthorCreateForm
     initial = {'date_of_death': 'xx.xx.xxxx'}
     permission_required = 'catalog.can_change_author'
 
 class AuthorUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
     model = Author
-    fields = ['image', 'first_name','last_name','date_of_birth','date_of_death', 'about_the_author']
+    form_class = AuthorUpdateForm
     permission_required = 'catalog.can_change_author'
 
 class AuthorDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
@@ -157,7 +166,7 @@ class AuthorDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
 
 class BookCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Book
-    fields = '__all__'
+    form_class = BookCreateForm
     permission_required = 'catalog.can_change_author'
 
 class BookUpdate(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
@@ -172,12 +181,18 @@ class BookDelete(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
 
 class BookInstanceCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = BookInstance
-    fields = '__all__'
+    form_class = BookInstanceCreateForm
     permission_required = 'catalog.can_change_author'
+
+    def get_success_url(self):
+        # Получаем id книги, к которой добавили экземпляр
+        book_id = self.object.book.id
+        # Формируем URL страницы книги
+        return reverse_lazy('book-detail', kwargs={'pk': book_id})
 
 class GenreCreate(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
     model = Genre
-    fields = '__all__'
+    form_class = GenreCreateForm
     permission_required = 'catalog.can_change_author'
 
 class GenreListView(LoginRequiredMixin, PermissionRequiredMixin, generic.ListView):

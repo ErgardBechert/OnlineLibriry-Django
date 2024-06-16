@@ -66,41 +66,19 @@
          <span>книги</span> 
       </div>
       <div class="recommend__books">
-        <div class="recommend-book">
-          <div class="recommend-book__img book__image">
-            <img src="{% static 'img/default.jpg' %}" alt="">
+        {% if book_list %}
+          {% for book in book_list %}
+          <div class="recommend-book">
+            <div class="recommend-book__img book__image">
+             <a href="{{ book.get_absolute_url }}"><img src="{{ book.image.url }}" alt="book_image"></a>
+            </div>
+            <div class="book__title">{{ book.title }}</div>
+            <div class="book__author">{{ book.author }}</div>
           </div>
-          <div class="book__title">Название книги</div>
-          <div class="book__author">Имя автора</div>
-        </div>
-        <div class="recommend-book">
-          <div class="recommend-book__img book__image">
-            <img src="{% static 'img/default.jpg' %}" alt="">
-          </div>
-          <div class="book__title">Название книги</div>
-          <div class="book__author">Имя автора</div>
-        </div>
-        <div class="recommend-book">
-          <div class="recommend-book__img book__image">
-            <img src="{% static 'img/default.jpg' %}" alt="">
-          </div>
-          <div class="book__title">Название книги</div>
-          <div class="book__author">Имя автора</div>
-        </div>
-        <div class="recommend-book">
-          <div class="recommend-book__img book__image">
-            <img src="{% static 'img/default.jpg' %}" alt="">
-          </div>
-          <div class="book__title">Название книги</div>
-          <div class="book__author">Имя автора</div>
-        </div>
-        <div class="recommend-book">
-          <div class="recommend-book__img book__image">
-            <img src="{% static 'img/default.jpg' %}" alt="">
-          </div>
-          <div class="book__title">Название книги</div>
-          <div class="book__author">Имя автора</div>
-        </div>
+          {% endfor %}
+        {% else %}
+          <p>В библиотеке нет книг</p>
+        {% endif %}
       </div>
   </div>
 </section>

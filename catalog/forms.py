@@ -6,6 +6,72 @@ from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 from .models import BookInstance
+from .models import Book
+from .models import Author
+from .models import Genre
+
+class BookCreateForm(forms.ModelForm):
+    class Meta:
+        model = Book
+        fields = '__all__'
+        labels = {
+            'image': 'Изображение',
+            'title': 'Название',
+            'author': 'Автор',
+            'summary': 'Аннотация',
+            'isbn': 'ISBN',
+            'genre': 'Жанр',
+        }
+
+class AuthorCreateForm(forms.ModelForm):
+    class Meta:
+        model = Author
+        fields = '__all__'  # Используйте '__all__' для указания всех полей модели
+        labels = {
+            'image': 'Аватар автора',
+            'first_name': 'Имя',
+            'last_name': 'Фамилия',
+            'date_of_birth': 'Дата рождения',
+            'date_of_death': 'Дата смерти',
+            'about_the_author': 'Об авторе',
+        }
+
+class AuthorUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Author
+        fields = ['image', 'first_name', 'last_name', 'date_of_birth', 'date_of_death', 'about_the_author']
+        labels = {
+            'image': 'Аватар автора',
+            'first_name': 'Имя',
+            'last_name': 'Фамилия',
+            'date_of_birth': 'Дата рождения',
+            'date_of_death': 'Дата смерти',
+            'about_the_author': 'О авторе',
+        }
+
+class BookInstanceCreateForm(forms.ModelForm):
+    class Meta:
+        model = BookInstance
+        fields = '__all__'
+        labels = {
+            'book': 'Книга',
+            'imprint': 'Версия',
+            'due_back': 'Возврат до',
+            'status': 'Статус',
+            'borrower': 'Заёмщик',
+        }
+        widgets = {
+            'due_back': forms.DateInput(attrs={'type': 'date'}),
+        }
+
+class GenreCreateForm(forms.ModelForm):
+    class Meta:
+        model = Genre
+        fields = '__all__'
+        labels = {
+            'name': 'Название жанра',
+        }
+
 
 class RenewBookForm(forms.ModelForm):
     def clean_due_back(self):

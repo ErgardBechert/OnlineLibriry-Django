@@ -24,6 +24,7 @@
             <a href="{% url 'book_delete' book.pk %}" class="btn delete_btn">Удалить</a> 
         </div>
     {% endif %}
+    {% if user.is_authenticated %}
     <div style="margin-left:20px;margin-top:20px">
       <h4>Копии</h4>
       {% for copy in book.bookinstance_set.all %} 
@@ -36,5 +37,6 @@
         <a class="{% if copy.status == 'a' %}borrowed__btn{% else %}dn{% endif %}" href="{% url 'borrow_book' copy.pk %}">Забронировать</a>
       {% endfor %}
     </div>
+    {% endif %}
 </div>
 {% endblock %}

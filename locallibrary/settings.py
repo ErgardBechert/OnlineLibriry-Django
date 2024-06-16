@@ -136,3 +136,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' #Это регистрирует любые письма, отправленные на консоль 
+
+LOGOUT_REDIRECT_URL = '/catalog'
